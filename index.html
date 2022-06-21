@@ -11,56 +11,31 @@
 </head>
 
 <body>
+    <h1>My Todo List</h1>
     <div class="wrapper">
         <div class="input">
-            <i class="fa-regular fa-note-sticky"></i>
+            <i class="note fa-regular fa-note-sticky"></i>
             <input type="text" placeholder="Type your todo list">
-            <i class="fas fa-plus-circle"></i>
+            <i id="add-btn" class="fas fa-plus-circle"></i>
         </div>
         <div class="controls">
-            <div class="completed">
-                <i class="fas fa-check-double"></i>
-                <p>Completed</p>
+            <div class="completed col-grey">
+                <p><i class="fas fa-check-double"></i>Completed</p>
             </div>
-            <div class="clearCompleted">
+            <div class="clearAll col-grey">
                 <p>Clear All</p>
             </div>
-            <ul class="tasks-container">
-                <li class="task">
-                    <label for="1">
-                        <input type="checkbox" id="1">
-                        <span>Add to do list</span>
-                    </label>
-                    <div class="delete">
-                        <i class="fas fa-trash-alt"></i>
-                    </div>
-                </li>
-                <li class="task">
-                    <label for="1">
-                        <input type="checkbox" id="1">
-                        <span>Add to do list</span>
-                    </label>
-                    <div class="delete">
-                        <i class="fas fa-trash-alt"></i>
-                    </div>
-                </li>
-                <li class="task">
-                    <label for="1">
-                        <input type="checkbox" id="1">
-                        <span>Add to do list</span>
-                    </label>
-                    <div class="delete">
-                        <i class="fas fa-trash-alt"></i>
-                    </div>
-                </li>
-            </ul>
-            <div class="footer">
-                <div class="count"><b>2</b> tasks left</div>
-                <div class="filters">
-                    <div id="all">All</div>
-                    <div id="completed">Completed</div>
-                    <div id="Incomplete">Incomplete</div>
-                </div>
+        </div>
+        <hr>
+        <ul class="tasks-container">
+        </ul>
+        <hr>
+        <div class="footer">
+            <div class="count col-grey"><b id="count" style="color: black;">0</b> tasks left</div>
+            <div class="filters">
+                <div id="all">All</div>
+                <div id="completed">Completed</div>
+                <div id="incomplete">Incomplete</div>
             </div>
         </div>
     </div>
