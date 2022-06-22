@@ -66,7 +66,7 @@ hr {
     margin-bottom: 0%;
 }
 
-.completedAll:hover{
+.completedAll:hover {
     color: blue;
 }
 
@@ -115,19 +115,23 @@ li:hover .delete {
     font-weight: 700;
     cursor: pointer;
 }
+
 #completed {
     margin-left: 10%;
     font-weight: 700;
     cursor: pointer;
 }
+
 #incomplete {
     margin-left: 10%;
     cursor: pointer;
     font-weight: 700;
 }
-.active{
+
+.active {
     color: blue;
 }
+
 .col-grey {
     color: rgba(110, 107, 107, 0.959);
 }

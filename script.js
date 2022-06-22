@@ -3,7 +3,7 @@ const addBtn = document.getElementById("add-btn");
 tasksContainer = document.querySelector(".tasks-container");
 const clearAllBtn = document.querySelector(".clearAll");
 const filters = document.querySelectorAll(".filters div");
-
+const completeAll = document.querySelector(".completedAll");
 // getting localstorage to work
 let todos = JSON.parse(localStorage.getItem("todo-list"));
 
@@ -22,7 +22,7 @@ function showTodo(filter) {
         todos.forEach((todo, id) => {
             // if the task is completed then it will show strike in the page even if refreshes...
             let completed = todo.status == "completed" ? "checked" : "";
-            if (filter == todo.status || filter=="all") {
+            if (filter == todo.status || filter == "all") {
                 li += ` <li class="task">
                             <label for="${id}">
                                 <input onclick="changeStatus(this)" type="checkbox" id="${id}" ${completed}>
@@ -36,7 +36,7 @@ function showTodo(filter) {
         });
         showCount(todos.length);
     }
-    tasksContainer.innerHTML = li ||`<div style="color:red;">Congo u dont have any tasks left!!!</div>`;
+    tasksContainer.innerHTML = li;
 }
 showTodo("all");
 
@@ -74,7 +74,15 @@ clearAllBtn.addEventListener("click", () => {
     showTodo("all");
 })
 
-
+completeAll.addEventListener("click", () => {
+    if (todos) {
+        todos.forEach((todo) => {
+            todo.status = "completed"
+        })
+    }
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+    showTodo("all")
+})
 
 // to save the list in local storage
 addBtn.addEventListener("click", e => {
