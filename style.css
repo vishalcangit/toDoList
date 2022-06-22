@@ -112,28 +112,21 @@ li:hover .delete {
 
 #all {
     margin-left: 10%;
-    color: black;
     font-weight: 700;
     cursor: pointer;
 }
-
 #completed {
     margin-left: 10%;
-    color: rgba(110, 107, 107, 0.959);
     font-weight: 700;
     cursor: pointer;
-}
-#completed:hover{
-    color: rgba(0, 0, 0, 1);
 }
 #incomplete {
     margin-left: 10%;
-    color: rgba(110, 107, 107, 0.959);
     cursor: pointer;
     font-weight: 700;
 }
-#incomplete:hover{
-    color: rgba(0, 0, 0, 1);
+.active{
+    color: blue;
 }
 .col-grey {
     color: rgba(110, 107, 107, 0.959);

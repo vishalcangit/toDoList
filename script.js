@@ -1,33 +1,44 @@
 const taskInput = document.querySelector(".input input");
 const addBtn = document.getElementById("add-btn");
 tasksContainer = document.querySelector(".tasks-container");
-const clearAllBtn=document.querySelector(".clearAll");
+const clearAllBtn = document.querySelector(".clearAll");
+const filters = document.querySelectorAll(".filters div");
 
 // getting localstorage to work
 let todos = JSON.parse(localStorage.getItem("todo-list"));
 
+filters.forEach(e => {
+    e.addEventListener('click', () => {
+        document.querySelector("div.active").classList.remove("active");
+        e.classList.add("active")
+        showTodo(e.id);
+    })
+})
+
 // function to show todo list fro local storage...
-function showTodo() {
+function showTodo(filter) {
     let li = "";
     if (todos) {
         todos.forEach((todo, id) => {
             // if the task is completed then it will show strike in the page even if refreshes...
-            let completed=todo.status=="completed" ? "checked" :"";
-            li += ` <li class="task">
-                        <label for="${id}">
-                            <input onclick="changeStatus(this)" type="checkbox" id="${id}" ${completed}>
-                            <span class="${completed}">${todo.name}</span>
-                        </label>
-                        <div onclick="deleteTask(${id})" class="delete">
-                            <i class="fas fa-trash-alt"></i>
-                        </div>
-                    </li>`;
+            let completed = todo.status == "completed" ? "checked" : "";
+            if (filter == todo.status || filter=="all") {
+                li += ` <li class="task">
+                            <label for="${id}">
+                                <input onclick="changeStatus(this)" type="checkbox" id="${id}" ${completed}>
+                                <span class="${completed}">${todo.name}</span>
+                            </label>
+                            <div onclick="deleteTask(${id})" class="delete">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                        </li>`;
+            }
         });
         showCount(todos.length);
     }
-    tasksContainer.innerHTML = li;
+    tasksContainer.innerHTML = li ||`<div style="color:red;">Congo u dont have any tasks left!!!</div>`;
 }
-showTodo();
+showTodo("all");
 
 function changeStatus(currentTask) {
     // console.log(currentTask);
@@ -52,15 +63,15 @@ function showCount(count) {
 }
 
 // to delete
-function deleteTask(taskId){
-    todos.splice(taskId,1);
+function deleteTask(taskId) {
+    todos.splice(taskId, 1);
     localStorage.setItem("todo-list", JSON.stringify(todos));
-    showTodo();
+    showTodo("all");
 }
-clearAllBtn.addEventListener("click",()=>{
-    todos.splice(0,todos.length);
+clearAllBtn.addEventListener("click", () => {
+    todos.splice(0, todos.length);
     localStorage.setItem("todo-list", JSON.stringify(todos));
-    showTodo();    
+    showTodo("all");
 })
 
 
@@ -77,6 +88,6 @@ addBtn.addEventListener("click", e => {
         let taskInfo = { name: userTask, status: "incomplete" };
         todos.push(taskInfo);
         localStorage.setItem("todo-list", JSON.stringify(todos));
-        showTodo();
+        showTodo("all");
     }
 })
